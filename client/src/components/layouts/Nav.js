@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 const styles = {
   root: {
@@ -28,8 +29,12 @@ function ButtonAppBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Boogle Books
           </Typography>
-          <Button color="inherit">Search</Button>
-          <Button color="inherit">Saved</Button>
+          <Button color="inherit" href="/">
+            Search
+          </Button>
+          <Button color="inherit" href="/saved">
+            Saved
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
