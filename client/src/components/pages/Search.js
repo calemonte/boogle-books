@@ -85,13 +85,9 @@ class Search extends Component {
     if (this.state.title) {
       API.getBooks(this.state.title)
         .then(res => {
-          console.log(res.data.items);
-          this.setState(
-            {
-              books: res.data.items
-            },
-            () => console.log(this.state.books)
-          );
+          this.setState({
+            books: res.data.items
+          }, () => console.log(this.state.books));
         })
         .catch(err => console.log(err));
     }
