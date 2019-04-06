@@ -77,6 +77,12 @@ class Saved extends Component {
       .catch(err => console.log(err));
   };
 
+  deleteBook = id => {
+    API.deleteBook(id)
+      .then(res => this.displayBooks())
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -121,6 +127,7 @@ class Saved extends Component {
                     image={book.image}
                     description={book.description}
                     link={book.link}
+                    deleteBook={() => this.deleteBook(book._id)}
                   />
                 </Grid>
               ))}

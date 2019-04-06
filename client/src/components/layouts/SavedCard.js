@@ -54,19 +54,7 @@ function SavedCard(props) {
             Learn More
           </a>
         </Button>
-        <Button
-          size="small"
-          color="secondary"
-          onClick={() =>
-            props.saveBook({
-              title: props.title,
-              authors: props.author,
-              description: props.description,
-              image: props.image,
-              link: props.link
-            })
-          }
-        >
+        <Button size="small" color="secondary" onClick={props.deleteBook}>
           Delete
         </Button>
       </CardActions>
