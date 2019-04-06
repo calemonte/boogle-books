@@ -159,6 +159,7 @@ class Search extends Component {
                   <Card
                     key={book.id}
                     title={book.volumeInfo.title}
+                    author={book.volumeInfo.authors}
                     image={book.volumeInfo.imageLinks.thumbnail}
                     description={book.volumeInfo.description}
                     link={book.volumeInfo.infoLink}
