@@ -168,7 +168,7 @@ class Search extends Component {
             </Grid>
           </div>
         </main>
-        <Footer className={this.props.classes.footer} />
+        {/* <Footer className={this.props.classes.footer} /> */}
       </React.Fragment>
     );
   }
