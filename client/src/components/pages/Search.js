@@ -59,7 +59,7 @@ const styles = theme => ({
   }
 });
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 class Search extends Component {
   constructor(props) {
@@ -71,14 +71,7 @@ class Search extends Component {
     };
   }
 
-  // searchBooks = terms => {
-  //   API.getBooks(terms)
-  //     .then(
-  //       res => console.log(res)
-  //       // this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
+  displayBooks = () => {};
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -87,14 +80,19 @@ class Search extends Component {
     });
   };
 
-  handleFormSubmit = (event) => {
+  handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title) {
       API.getBooks(this.state.title)
-        .then(
-          res => console.log(res)
-          // this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-        )
+        .then(res => {
+          console.log(res.data.items);
+          this.setState(
+            {
+              books: res.data.items
+            },
+            () => console.log(this.state.books)
+          );
+        })
         .catch(err => console.log(err));
     }
   };
@@ -160,12 +158,14 @@ class Search extends Component {
           >
             {/* End hero unit */}
             <Grid container spacing={40}>
-              {cards.map(card => (
-                <Grid item key={card} sm={6} md={4} lg={3}>
+              {this.state.books.map(book => (
+                <Grid item key={book.id} sm={6} md={4} lg={3}>
                   <Card
-                    title="National Treasure"
-                    image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Liberty_Bell_2008.jpg/440px-Liberty_Bell_2008.jpg"
-                    description="This is a test."
+                    key={book.id}
+                    title={book.volumeInfo.title}
+                    image={book.volumeInfo.imageLinks.thumbnail}
+                    description={book.volumeInfo.description}
+                    link={book.volumeInfo.infoLink}
                   />
                 </Grid>
               ))}
