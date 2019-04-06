@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import API from "../../utils/API";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
@@ -70,6 +71,15 @@ class Search extends Component {
     };
   }
 
+  // searchBooks = terms => {
+  //   API.getBooks(terms)
+  //     .then(
+  //       res => console.log(res)
+  //       // this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -77,17 +87,15 @@ class Search extends Component {
     });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     if (this.state.title) {
-      console.log("submit successful");
-      // API.saveBook({
-      //   title: this.state.title,
-      //   author: this.state.author,
-      //   synopsis: this.state.synopsis
-      // })
-      //   .then(res => this.loadBooks())
-      //   .catch(err => console.log(err));
+      API.getBooks(this.state.title)
+        .then(
+          res => console.log(res)
+          // this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        )
+        .catch(err => console.log(err));
     }
   };
 
