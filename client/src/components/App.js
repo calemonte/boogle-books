@@ -8,11 +8,11 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Search} />
-          <Route component={NoMatch} />
-        </Switch>
+          <Nav />
+          <Switch>
+            <Route exact path="/" component={Search} />
+            <Route component={NoMatch} />
+          </Switch>
       </div>
     </Router>
   );
