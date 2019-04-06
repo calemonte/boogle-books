@@ -96,32 +96,6 @@ class Saved extends Component {
               >
                 View your saved books.
               </Typography>
-              {/* <div className={this.props.classes.heroButtons}>
-                <Grid container spacing={16} justify="center">
-                  <TextField
-                    id="standard-full-width"
-                    style={{ margin: 8 }}
-                    placeholder="Let's find you a book"
-                    fullWidth
-                    margin="normal"
-                    name="title"
-                    value={this.state.title}
-                    onChange={this.handleInputChange}
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                  />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    disabled={!this.state.title}
-                    onClick={this.handleFormSubmit}
-                    className={this.props.classes.button}
-                  >
-                    Submit
-                  </Button>
-                </Grid>
-              </div> */}
             </div>
           </div>
           <div
