@@ -64,12 +64,19 @@ class Saved extends Component {
     super(props);
 
     this.state = {
-      books: [],
-      title: ""
+      books: []
     };
   }
 
-  displayBooks = () => {};
+  componentDidMount() {
+    this.displayBooks();
+  }
+
+  displayBooks = () => {
+    API.getSavedBooks()
+      .then(res => this.setState({ books: res.data }))
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
@@ -107,14 +114,14 @@ class Saved extends Component {
             {/* End hero unit */}
             <Grid container spacing={40}>
               {this.state.books.map(book => (
-                <Grid item key={book.id} sm={6} md={4} lg={3}>
+                <Grid item key={book._id} sm={6} md={4} lg={3}>
                   <Card
-                    key={book.id}
-                    title={book.volumeInfo.title}
-                    author={book.volumeInfo.authors}
-                    image={book.volumeInfo.imageLinks.thumbnail}
-                    description={book.volumeInfo.description}
-                    link={book.volumeInfo.infoLink}
+                    key={book._id}
+                    title={book.title}
+                    author={book.authors}
+                    image={book.image}
+                    description={book.description}
+                    link={book.link}
                   />
                 </Grid>
               ))}
