@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Card from "../layouts/Card";
@@ -59,67 +59,75 @@ const styles = theme => ({
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-function Search(props) {
-  const { classes } = props;
+class Search extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <main>
-        {/* Hero unit */}
-        <div className={classes.heroUnit}>
-          <div className={classes.heroContent}>
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              Search
-            </Typography>
-            <Typography
-              variant="h6"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              Search the Google Books API to find something new to read.
-            </Typography>
-            <div className={classes.heroButtons}>
-              <Grid container spacing={16} justify="center">
-                <TextField
-                  id="standard-full-width"
-                  style={{ margin: 8 }}
-                  placeholder="Let's find you a book"
-                  fullWidth
-                  margin="normal"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
-              </Grid>
+    this.state = {
+      books: [],
+    };
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <main>
+          {/* Hero unit */}
+          <div className={this.props.classes.heroUnit}>
+            <div className={this.props.classes.heroContent}>
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+              >
+                Search
+              </Typography>
+              <Typography
+                variant="h6"
+                align="center"
+                color="textSecondary"
+                paragraph
+              >
+                Search the Google Books API to find something new to read.
+              </Typography>
+              <div className={this.props.classes.heroButtons}>
+                <Grid container spacing={16} justify="center">
+                  <TextField
+                    id="standard-full-width"
+                    style={{ margin: 8 }}
+                    placeholder="Let's find you a book"
+                    fullWidth
+                    margin="normal"
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </Grid>
+              </div>
             </div>
           </div>
-        </div>
-        <div className={classNames(classes.layout, classes.cardGrid)}>
-          {/* End hero unit */}
-          <Grid container spacing={40}>
-            {cards.map(card => (
-              <Grid item key={card} sm={6} md={4} lg={3}>
-                <Card
-                  title="National Treasure"
-                  image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Liberty_Bell_2008.jpg/440px-Liberty_Bell_2008.jpg"
-                  description="This is a test."
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-      </main>
-      <Footer className={classes.footer} />
-    </React.Fragment>
-  );
+          <div className={classNames(this.props.classes.layout, this.props.classes.cardGrid)}>
+            {/* End hero unit */}
+            <Grid container spacing={40}>
+              {cards.map(card => (
+                <Grid item key={card} sm={6} md={4} lg={3}>
+                  <Card
+                    title="National Treasure"
+                    image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Liberty_Bell_2008.jpg/440px-Liberty_Bell_2008.jpg"
+                    description="This is a test."
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        </main>
+        <Footer className={this.props.classes.footer} />
+      </React.Fragment>
+    );
+  }
 }
 
 Search.propTypes = {
