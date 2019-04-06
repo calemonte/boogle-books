@@ -5,6 +5,7 @@ import Card from "../layouts/Card";
 import Footer from "../layouts/Footer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -65,8 +66,30 @@ class Search extends Component {
 
     this.state = {
       books: [],
+      title: ""
     };
   }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.title) {
+      console.log("submit successful");
+      // API.saveBook({
+      //   title: this.state.title,
+      //   author: this.state.author,
+      //   synopsis: this.state.synopsis
+      // })
+      //   .then(res => this.loadBooks())
+      //   .catch(err => console.log(err));
+    }
+  };
 
   render() {
     return (
@@ -101,15 +124,32 @@ class Search extends Component {
                     placeholder="Let's find you a book"
                     fullWidth
                     margin="normal"
+                    name="title"
+                    value={this.state.title}
+                    onChange={this.handleInputChange}
                     InputLabelProps={{
                       shrink: true
                     }}
                   />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    disabled={!this.state.title}
+                    onClick={this.handleFormSubmit}
+                    className={this.props.classes.button}
+                  >
+                    Submit
+                  </Button>
                 </Grid>
               </div>
             </div>
           </div>
-          <div className={classNames(this.props.classes.layout, this.props.classes.cardGrid)}>
+          <div
+            className={classNames(
+              this.props.classes.layout,
+              this.props.classes.cardGrid
+            )}
+          >
             {/* End hero unit */}
             <Grid container spacing={40}>
               {cards.map(card => (
