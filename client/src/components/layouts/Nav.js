@@ -29,12 +29,17 @@ function ButtonAppBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Boogle Books
           </Typography>
-          <Button color="inherit" href="/">
-            Search
-          </Button>
-          <Button color="inherit" href="/saved">
-            Saved
-          </Button>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
+            <Button color="inherit" style={{ color: "white" }}>
+              Search
+            </Button>
+          </Link>
+
+          <Link to={"/saved"} style={{ textDecoration: "none" }}>
+            <Button color="inherit" style={{ color: "white" }}>
+              Saved
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
