@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Card from "../layouts/Card";
-// import Footer from "../layouts/Footer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -64,8 +63,7 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      books: [],
-      title: ""
+      books: []
     };
   }
 
@@ -78,7 +76,7 @@ class Search extends Component {
       image,
       link
     })
-      .then(res => console.log("Success!" + res))
+      .then(res => console.log("Success! Book Saved!"))
       .catch(err => console.log(err));
   };
 
@@ -94,12 +92,10 @@ class Search extends Component {
     if (this.state.title) {
       API.getBooks(this.state.title)
         .then(res => {
-          this.setState(
-            {
-              books: res.data.items
-            },
-            () => console.log(this.state.books)
-          );
+          console.log(res.data.items);
+          this.setState({
+            books: res.data.items
+          });
         })
         .catch(err => console.log(err));
     }
@@ -166,23 +162,37 @@ class Search extends Component {
           >
             {/* End hero unit */}
             <Grid container spacing={40}>
-              {this.state.books.map(book => (
-                <Grid item key={book.id} sm={6} md={4} lg={3}>
-                  <Card
-                    key={book.id}
-                    title={book.volumeInfo.title}
-                    author={book.volumeInfo.authors}
-                    image={book.volumeInfo.imageLinks.thumbnail}
-                    description={book.volumeInfo.description}
-                    link={book.volumeInfo.infoLink}
-                    saveBook={this.saveBook}
-                  />
-                </Grid>
-              ))}
+              {this.state.books.length ? (
+                this.state.books.map(book => (
+                  <Grid item key={book.id} sm={6} md={4} lg={3}>
+                    <Card
+                      key={book.id}
+                      title={book.volumeInfo.title}
+                      author={book.volumeInfo.authors}
+                      image={
+                        book.volumeInfo.imageLinks.thumbnail
+                          ? book.volumeInfo.imageLinks.thumbnail
+                          : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Book_Collage.png/620px-Book_Collage.png"
+                      }
+                      description={book.volumeInfo.description}
+                      link={book.volumeInfo.infoLink}
+                      saveBook={this.saveBook}
+                    />
+                  </Grid>
+                ))
+              ) : (
+                <Typography
+                  variant="h6"
+                  align="center"
+                  color="textSecondary"
+                  paragraph
+                >
+                  No books to display.
+                </Typography>
+              )}
             </Grid>
           </div>
         </main>
-        {/* <Footer className={this.props.classes.footer} /> */}
       </React.Fragment>
     );
   }

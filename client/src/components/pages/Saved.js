@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Card from "../layouts/Card";
-// import Footer from "../layouts/Footer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -128,7 +127,6 @@ class Saved extends Component {
             </Grid>
           </div>
         </main>
-        {/* <Footer className={this.props.classes.footer} /> */}
       </React.Fragment>
     );
   }
