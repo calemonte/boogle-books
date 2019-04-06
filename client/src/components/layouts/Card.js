@@ -54,7 +54,19 @@ function MediaCard(props) {
             Learn More
           </a>
         </Button>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() =>
+            props.saveBook({
+              title: props.title,
+              authors: props.author,
+              description: props.description,
+              image: props.image,
+              link: props.link
+            })
+          }
+        >
           Save
         </Button>
       </CardActions>

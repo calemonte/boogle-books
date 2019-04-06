@@ -69,7 +69,18 @@ class Search extends Component {
     };
   }
 
-  displayBooks = () => {};
+  saveBook = book => {
+    const { title, authors, description, image, link } = book;
+    API.saveBook({
+      title,
+      authors,
+      description,
+      image,
+      link
+    })
+      .then(res => console.log("Success!" + res))
+      .catch(err => console.log(err));
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -83,9 +94,12 @@ class Search extends Component {
     if (this.state.title) {
       API.getBooks(this.state.title)
         .then(res => {
-          this.setState({
-            books: res.data.items
-          }, () => console.log(this.state.books));
+          this.setState(
+            {
+              books: res.data.items
+            },
+            () => console.log(this.state.books)
+          );
         })
         .catch(err => console.log(err));
     }
@@ -161,6 +175,7 @@ class Search extends Component {
                     image={book.volumeInfo.imageLinks.thumbnail}
                     description={book.volumeInfo.description}
                     link={book.volumeInfo.infoLink}
+                    saveBook={this.saveBook}
                   />
                 </Grid>
               ))}
