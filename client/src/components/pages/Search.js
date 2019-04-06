@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import Card from "../layouts/Card";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -87,16 +88,16 @@ function Search(props) {
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
-                <Grid item>
-                  <Button variant="contained" color="primary">
-                    Main call to action
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="outlined" color="primary">
-                    Secondary action
-                  </Button>
-                </Grid>
+                <TextField
+                  id="standard-full-width"
+                  style={{ margin: 8 }}
+                  placeholder="Let's find you a book"
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                />
               </Grid>
             </div>
           </div>
@@ -106,7 +107,11 @@ function Search(props) {
           <Grid container spacing={40}>
             {cards.map(card => (
               <Grid item key={card} sm={6} md={4} lg={3}>
-                <Card title="National Treasure" image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Liberty_Bell_2008.jpg/440px-Liberty_Bell_2008.jpg" description="This is a test." />
+                <Card
+                  title="National Treasure"
+                  image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Liberty_Bell_2008.jpg/440px-Liberty_Bell_2008.jpg"
+                  description="This is a test."
+                />
               </Grid>
             ))}
           </Grid>
