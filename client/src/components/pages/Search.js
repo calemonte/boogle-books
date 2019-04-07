@@ -77,7 +77,7 @@ class Search extends Component {
       image,
       link
     })
-      .then(res => console.log("Success! Book Saved!"))
+      .then(res => alert("Book saved!"))
       .catch(err => console.log(err));
   };
 
@@ -163,53 +163,42 @@ class Search extends Component {
           >
             {/* End hero unit */}
             <Grid container spacing={40}>
-              {this.state.books.length ? (
-                this.state.books.map(book => (
-                  <Grid item key={book.id} sm={6} md={4} lg={3}>
-                    <Card
-                      key={book.id}
-                      title={book.volumeInfo.title}
-                      author={
-                        book.volumeInfo.authors &&
-                        book.volumeInfo.authors.length > 1
-                          ? book.volumeInfo.authors.join(", ")
-                          : book.volumeInfo.authors
-                      }
-                      image={
-                        book.volumeInfo.imageLinks
-                          ? book.volumeInfo.imageLinks.thumbnail
-                          : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Book_Collage.png/620px-Book_Collage.png"
-                      }
-                      description={
-                        book.searchInfo
+              {this.state.books.map(book => (
+                <Grid item key={book.id} sm={6} md={4} lg={3}>
+                  <Card
+                    key={book.id}
+                    title={book.volumeInfo.title}
+                    author={
+                      book.volumeInfo.authors &&
+                      book.volumeInfo.authors.length > 1
+                        ? book.volumeInfo.authors.join(", ")
+                        : book.volumeInfo.authors
+                    }
+                    image={
+                      book.volumeInfo.imageLinks
+                        ? book.volumeInfo.imageLinks.thumbnail
+                        : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Book_Collage.png/620px-Book_Collage.png"
+                    }
+                    description={
+                      book.searchInfo
+                        ? book.searchInfo.textSnippet
+                        : "No description available."
+                    }
+                    link={book.volumeInfo.infoLink}
+                    onClick={() =>
+                      this.saveBook({
+                        title: book.volumeInfo.title,
+                        authors: book.volumeInfo.authors,
+                        description: book.searchInfo
                           ? book.searchInfo.textSnippet
-                          : "No description available."
-                      }
-                      link={book.volumeInfo.infoLink}
-                      onClick={() =>
-                        this.saveBook({
-                          title: book.volumeInfo.title,
-                          authors: book.volumeInfo.authors,
-                          description: book.searchInfo
-                            ? book.searchInfo.textSnippet
-                            : "No description available.",
-                          image: book.volumeInfo.imageLinks.thumbnail,
-                          link: book.volumeInfo.infoLink
-                        })
-                      }
-                    />
-                  </Grid>
-                ))
-              ) : (
-                <Typography
-                  variant="h6"
-                  align="center"
-                  color="textSecondary"
-                  paragraph
-                >
-                  No books to display.
-                </Typography>
-              )}
+                          : "No description available.",
+                        image: book.volumeInfo.imageLinks.thumbnail,
+                        link: book.volumeInfo.infoLink
+                      })
+                    }
+                  />
+                </Grid>
+              ))}
             </Grid>
           </div>
         </main>
