@@ -9,7 +9,6 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import API from "../../utils/API";
 import { withStyles } from "@material-ui/core/styles";
-import { isArray } from "util";
 
 const styles = theme => ({
   appBar: {
@@ -191,7 +190,9 @@ class Search extends Component {
                         this.saveBook({
                           title: book.volumeInfo.title,
                           authors: book.volumeInfo.authors,
-                          description: book.volumeInfo.description,
+                          description: book.searchInfo
+                            ? book.searchInfo.textSnippet
+                            : "No description available.",
                           image: book.volumeInfo.imageLinks.thumbnail,
                           link: book.volumeInfo.infoLink
                         })
