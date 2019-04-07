@@ -121,7 +121,11 @@ class Saved extends Component {
                   <Card
                     key={book._id}
                     title={book.title}
-                    author={book.authors}
+                    author={
+                      book.authors && book.authors.length > 1
+                        ? book.authors.join(", ")
+                        : book.authors
+                    }
                     image={book.image}
                     description={book.description}
                     link={book.link}
