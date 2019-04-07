@@ -170,7 +170,12 @@ class Search extends Component {
                     <Card
                       key={book.id}
                       title={book.volumeInfo.title}
-                      author={book.volumeInfo.authors.join(", ")}
+                      author={
+                        book.volumeInfo.authors &&
+                        book.volumeInfo.authors.length > 1
+                          ? book.volumeInfo.authors.join(", ")
+                          : book.volumeInfo.authors
+                      }
                       image={
                         book.volumeInfo.imageLinks
                           ? book.volumeInfo.imageLinks.thumbnail
