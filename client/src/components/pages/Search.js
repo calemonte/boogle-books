@@ -93,7 +93,7 @@ class Search extends Component {
     if (this.state.title) {
       API.getBooks(this.state.title)
         .then(res => {
-          console.log(res.data.items);
+          // console.log(res.data.items);
           this.setState({
             books: res.data.items
           });
@@ -125,7 +125,7 @@ class Search extends Component {
                 color="textSecondary"
                 paragraph
               >
-                Search the Google Books API to find something new to read.
+                Search the Google Books API and find something new to read
               </Typography>
               <div className={this.props.classes.heroButtons}>
                 <Grid container spacing={16} justify="center">
@@ -171,11 +171,15 @@ class Search extends Component {
                       title={book.volumeInfo.title}
                       author={book.volumeInfo.authors}
                       image={
-                        book.volumeInfo.imageLinks.thumbnail
+                        book.volumeInfo.imageLinks
                           ? book.volumeInfo.imageLinks.thumbnail
                           : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Book_Collage.png/620px-Book_Collage.png"
                       }
-                      description={book.volumeInfo.description}
+                      description={
+                        book.searchInfo
+                          ? book.searchInfo.textSnippet
+                          : "No description available."
+                      }
                       link={book.volumeInfo.infoLink}
                       onClick={() =>
                         this.saveBook({

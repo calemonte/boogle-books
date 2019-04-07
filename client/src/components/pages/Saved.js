@@ -104,7 +104,7 @@ class Saved extends Component {
                 color="textSecondary"
                 paragraph
               >
-                View your saved books.
+                View your saved books
               </Typography>
             </div>
           </div>

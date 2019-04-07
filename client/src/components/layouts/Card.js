@@ -39,7 +39,11 @@ function MediaCard(props) {
           <Typography gutterBottom variant="subtitle2" component="h2">
             {props.author}
           </Typography>
-          <Typography component="p">{props.description}</Typography>
+          <Typography component="p">
+            {props.description
+              ? props.description
+              : "No description available."}
+          </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
