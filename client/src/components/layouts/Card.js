@@ -43,16 +43,6 @@ function MediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          <a
-            href={props.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            Learn More
-          </a>
-        </Button>
         <Button
           size="small"
           color={

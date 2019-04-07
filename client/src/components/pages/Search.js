@@ -132,7 +132,7 @@ class Search extends Component {
                   <TextField
                     id="standard-full-width"
                     style={{ margin: 8 }}
-                    placeholder="Let's find you a book"
+                    placeholder="Enter book title to start your search"
                     fullWidth
                     margin="normal"
                     name="title"
