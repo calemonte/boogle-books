@@ -13,10 +13,6 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/calemonte/boogle-books.git"
-  },
   "author": "Kenny Whitebloom",
   "license": "ISC",
   "devDependencies": {
