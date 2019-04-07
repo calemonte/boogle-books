@@ -63,7 +63,8 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      books: []
+      books: [],
+      title: ""
     };
   }
 
@@ -176,7 +177,15 @@ class Search extends Component {
                       }
                       description={book.volumeInfo.description}
                       link={book.volumeInfo.infoLink}
-                      saveBook={this.saveBook}
+                      onClick={() =>
+                        this.saveBook({
+                          title: book.volumeInfo.title,
+                          authors: book.volumeInfo.authors,
+                          description: book.volumeInfo.description,
+                          image: book.volumeInfo.imageLinks.thumbnail,
+                          link: book.volumeInfo.infoLink
+                        })
+                      }
                     />
                   </Grid>
                 ))

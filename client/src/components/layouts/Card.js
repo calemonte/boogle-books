@@ -8,7 +8,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-// import { Link } from "react-router-dom";
 
 const styles = {
   card: {
@@ -56,18 +55,12 @@ function MediaCard(props) {
         </Button>
         <Button
           size="small"
-          color="primary"
-          onClick={() =>
-            props.saveBook({
-              title: props.title,
-              authors: props.author,
-              description: props.description,
-              image: props.image,
-              link: props.link
-            })
+          color={
+            !window.location.href.includes("saved") ? "primary" : "secondary"
           }
+          onClick={props.onClick}
         >
-          Save
+          {!window.location.href.includes("saved") ? "Save" : "Delete"}
         </Button>
       </CardActions>
     </Card>

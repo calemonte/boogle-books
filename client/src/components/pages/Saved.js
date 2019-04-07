@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import SavedCard from "../layouts/SavedCard";
+import Card from "../layouts/Card";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import API from "../../utils/API";
 import { withStyles } from "@material-ui/core/styles";
@@ -120,14 +118,14 @@ class Saved extends Component {
             <Grid container spacing={40}>
               {this.state.books.map(book => (
                 <Grid item key={book._id} sm={6} md={4} lg={3}>
-                  <SavedCard
+                  <Card
                     key={book._id}
                     title={book.title}
                     author={book.authors}
                     image={book.image}
                     description={book.description}
                     link={book.link}
-                    deleteBook={() => this.deleteBook(book._id)}
+                    onClick={() => this.deleteBook(book._id)}
                   />
                 </Grid>
               ))}
