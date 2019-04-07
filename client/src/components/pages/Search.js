@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import API from "../../utils/API";
 import { withStyles } from "@material-ui/core/styles";
+import { isArray } from "util";
 
 const styles = theme => ({
   appBar: {
@@ -169,7 +170,7 @@ class Search extends Component {
                     <Card
                       key={book.id}
                       title={book.volumeInfo.title}
-                      author={book.volumeInfo.authors}
+                      author={book.volumeInfo.authors.join(", ")}
                       image={
                         book.volumeInfo.imageLinks
                           ? book.volumeInfo.imageLinks.thumbnail
