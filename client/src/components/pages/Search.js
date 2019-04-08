@@ -211,7 +211,9 @@ class Search extends Component {
                           description: book.searchInfo
                             ? book.searchInfo.textSnippet
                             : "No description available.",
-                          image: book.volumeInfo.imageLinks.thumbnail,
+                          image: book.volumeInfo.imageLinks
+                            ? book.volumeInfo.imageLinks.thumbnail
+                            : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Book_Collage.png/620px-Book_Collage.png",
                           link: book.volumeInfo.infoLink
                         })
                       }
