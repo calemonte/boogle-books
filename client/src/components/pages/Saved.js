@@ -115,25 +115,38 @@ class Saved extends Component {
             )}
           >
             {/* End hero unit */}
-            <Grid container spacing={40}>
-              {this.state.books.map(book => (
-                <Grid item key={book._id} sm={6} md={4} lg={3}>
-                  <Card
-                    key={book._id}
-                    title={book.title}
-                    author={
-                      book.authors && book.authors.length > 1
-                        ? book.authors.join(", ")
-                        : book.authors
-                    }
-                    image={book.image}
-                    description={book.description}
-                    link={book.link}
-                    onClick={() => this.deleteBook(book._id)}
-                  />
-                </Grid>
-              ))}
-            </Grid>
+            {!this.state.books.length ? (
+              <Grid>
+                <Typography
+                  variant="h6"
+                  align="center"
+                  color="textSecondary"
+                  paragraph
+                >
+                  No saved books to display.
+                </Typography>
+              </Grid>
+            ) : (
+              <Grid container spacing={40}>
+                {this.state.books.map(book => (
+                  <Grid item key={book._id} sm={6} md={4} lg={3}>
+                    <Card
+                      key={book._id}
+                      title={book.title}
+                      author={
+                        book.authors && book.authors.length > 1
+                          ? book.authors.join(", ")
+                          : book.authors
+                      }
+                      image={book.image}
+                      description={book.description}
+                      link={book.link}
+                      onClick={() => this.deleteBook(book._id)}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            )}
           </div>
         </main>
       </React.Fragment>
