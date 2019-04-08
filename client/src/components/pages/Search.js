@@ -64,7 +64,8 @@ class Search extends Component {
 
     this.state = {
       books: [],
-      title: ""
+      title: "",
+      message: "No books to display."
     };
   }
 
@@ -93,10 +94,16 @@ class Search extends Component {
     if (this.state.title) {
       API.getBooks(this.state.title)
         .then(res => {
-          // console.log(res.data.items);
-          this.setState({
-            books: res.data.items
-          });
+          if (res.data.totalItems > 0) {
+            this.setState({
+              books: res.data.items
+            });
+          } else {
+            this.setState({
+              books: [],
+              message: "No results were found."
+            });
+          }
         })
         .catch(err => console.log(err));
     }
@@ -162,44 +169,57 @@ class Search extends Component {
             )}
           >
             {/* End hero unit */}
-            <Grid container spacing={40}>
-              {this.state.books.map(book => (
-                <Grid item key={book.id} sm={6} md={4} lg={3}>
-                  <Card
-                    key={book.id}
-                    title={book.volumeInfo.title}
-                    author={
-                      book.volumeInfo.authors &&
-                      book.volumeInfo.authors.length > 1
-                        ? book.volumeInfo.authors.join(", ")
-                        : book.volumeInfo.authors
-                    }
-                    image={
-                      book.volumeInfo.imageLinks
-                        ? book.volumeInfo.imageLinks.thumbnail
-                        : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Book_Collage.png/620px-Book_Collage.png"
-                    }
-                    description={
-                      book.searchInfo
-                        ? book.searchInfo.textSnippet
-                        : "No description available."
-                    }
-                    link={book.volumeInfo.infoLink}
-                    onClick={() =>
-                      this.saveBook({
-                        title: book.volumeInfo.title,
-                        authors: book.volumeInfo.authors,
-                        description: book.searchInfo
+            {!this.state.books.length ? (
+              <Grid>
+                <Typography
+                  variant="h6"
+                  align="center"
+                  color="textSecondary"
+                  paragraph
+                >
+                  {this.state.message}
+                </Typography>
+              </Grid>
+            ) : (
+              <Grid container spacing={40}>
+                {this.state.books.map(book => (
+                  <Grid item key={book.id} sm={6} md={4} lg={3}>
+                    <Card
+                      key={book.id}
+                      title={book.volumeInfo.title}
+                      author={
+                        book.volumeInfo.authors &&
+                        book.volumeInfo.authors.length > 1
+                          ? book.volumeInfo.authors.join(", ")
+                          : book.volumeInfo.authors
+                      }
+                      image={
+                        book.volumeInfo.imageLinks
+                          ? book.volumeInfo.imageLinks.thumbnail
+                          : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Book_Collage.png/620px-Book_Collage.png"
+                      }
+                      description={
+                        book.searchInfo
                           ? book.searchInfo.textSnippet
-                          : "No description available.",
-                        image: book.volumeInfo.imageLinks.thumbnail,
-                        link: book.volumeInfo.infoLink
-                      })
-                    }
-                  />
-                </Grid>
-              ))}
-            </Grid>
+                          : "No description available."
+                      }
+                      link={book.volumeInfo.infoLink}
+                      onClick={() =>
+                        this.saveBook({
+                          title: book.volumeInfo.title,
+                          authors: book.volumeInfo.authors,
+                          description: book.searchInfo
+                            ? book.searchInfo.textSnippet
+                            : "No description available.",
+                          image: book.volumeInfo.imageLinks.thumbnail,
+                          link: book.volumeInfo.infoLink
+                        })
+                      }
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            )}
           </div>
         </main>
       </React.Fragment>
