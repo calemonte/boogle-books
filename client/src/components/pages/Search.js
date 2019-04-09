@@ -204,19 +204,8 @@ class Search extends Component {
                           : "No description available."
                       }
                       link={book.volumeInfo.infoLink}
-                      onClick={() =>
-                        this.saveBook({
-                          title: book.volumeInfo.title,
-                          authors: book.volumeInfo.authors,
-                          description: book.searchInfo
-                            ? book.searchInfo.textSnippet
-                            : "No description available.",
-                          image: book.volumeInfo.imageLinks
-                            ? book.volumeInfo.imageLinks.thumbnail
-                            : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Book_Collage.png/620px-Book_Collage.png",
-                          link: book.volumeInfo.infoLink
-                        })
-                      }
+                      saved={false}
+                      onClick={this.saveBook}
                     />
                   </Grid>
                 ))}

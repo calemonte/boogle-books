@@ -141,7 +141,9 @@ class Saved extends Component {
                       image={book.image}
                       description={book.description}
                       link={book.link}
-                      onClick={() => this.deleteBook(book._id)}
+                      saved={true}
+                      id={book._id}
+                      onClick={this.deleteBook}
                     />
                   </Grid>
                 ))}

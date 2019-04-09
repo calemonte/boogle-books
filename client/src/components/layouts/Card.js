@@ -49,12 +49,21 @@ function MediaCard(props) {
       <CardActions>
         <Button
           size="small"
-          color={
-            !window.location.href.includes("saved") ? "primary" : "secondary"
+          color={!props.saved ? "primary" : "secondary"}
+          onClick={
+            !props.saved
+              ? () =>
+                  props.onClick({
+                    title: props.title,
+                    author: props.author,
+                    description: props.description,
+                    image: props.image,
+                    link: props.link
+                  })
+              : () => props.onClick(props.id)
           }
-          onClick={props.onClick}
         >
-          {!window.location.href.includes("saved") ? "Save" : "Delete"}
+          {!props.saved ? "Save" : "Delete"}
         </Button>
       </CardActions>
     </Card>
